@@ -1751,3 +1751,122 @@ body {
     transition-duration: .001ms !important;
   }
 }
+
+/* ============================================================
+   TEMA MERAH-HITAM TRANSPARAN (semua section)
+   Latar gelap hitam dengan cahaya merah menyala & transparan.
+============================================================ */
+
+/* Dasar halaman */
+body {
+  background: linear-gradient(160deg, #160000 0%, #0a0000 50%, #200000 100%);
+}
+
+/* ---- HALAMAN 1: COUNTDOWN ---- */
+.orb-1 { background: radial-gradient(circle, #ff1a1a, transparent 70%); }
+.orb-2 { background: radial-gradient(circle, #e11d48, transparent 70%); }
+
+#landing {
+  background:
+    radial-gradient(ellipse at 20% 15%, rgba(255, 26, 26, .32), transparent 55%),
+    radial-gradient(ellipse at 80% 85%, rgba(225, 29, 72, .30), transparent 55%),
+    linear-gradient(160deg, #0a0000 0%, #2a0000 35%, #3d0000 60%, #4a0000 82%, #ff1a1a 120%);
+}
+
+/* ---- HALAMAN 2: KUE ---- */
+#birthday {
+  background:
+    radial-gradient(ellipse at 50% 20%, rgba(255, 60, 60, .25), transparent 45%),
+    radial-gradient(ellipse at 15% 90%, rgba(255, 26, 26, .25), transparent 50%),
+    radial-gradient(ellipse at 85% 80%, rgba(225, 29, 72, .32), transparent 50%),
+    linear-gradient(160deg, #1a0000 0%, #2b0000 35%, #160000 70%, #1a0000 100%);
+}
+
+/* Teks langsung di atas latar (bukan di kartu) → warna terang */
+.type-line { color: #ffdbe2; }
+.wish { color: #ffc2cf; }
+
+/* ---- HALAMAN 3: SURAT ---- */
+.letter-section {
+  background:
+    radial-gradient(ellipse at 50% 15%, rgba(255, 60, 60, .25), transparent 45%),
+    radial-gradient(ellipse at 15% 90%, rgba(255, 26, 26, .30), transparent 50%),
+    radial-gradient(ellipse at 85% 80%, rgba(225, 29, 72, .30), transparent 50%),
+    linear-gradient(160deg, #160000 0%, #2a0000 35%, #180000 70%, #160000 100%);
+}
+
+.letter-section::before {
+  background:
+    radial-gradient(ellipse at 50% 15%, rgba(255, 60, 60, .25), transparent 45%),
+    radial-gradient(ellipse at 15% 90%, rgba(255, 26, 26, .30), transparent 50%),
+    radial-gradient(ellipse at 85% 80%, rgba(225, 29, 72, .30), transparent 50%),
+    linear-gradient(160deg, #160000 0%, #2a0000 35%, #180000 70%, #160000 100%);
+}
+
+.bc-1 { background: radial-gradient(circle, rgba(255, 26, 26, .55), transparent 70%); }
+.bc-2 { background: radial-gradient(circle, rgba(225, 29, 72, .5), transparent 70%); }
+.bc-3 { background: radial-gradient(circle, rgba(255, 60, 60, .5), transparent 70%); }
+
+/* ---- HALAMAN 4: GALERI ---- */
+.gallery-bg {
+  background:
+    radial-gradient(ellipse at 15% 8%, rgba(255, 60, 60, .18), transparent 50%),
+    radial-gradient(ellipse at 88% 12%, rgba(225, 29, 72, .28), transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(255, 26, 26, .30), transparent 60%),
+    linear-gradient(160deg, #140000 0%, #2a0000 38%, #150000 100%);
+}
+
+.gbc-1 { background: radial-gradient(circle, rgba(255, 26, 26, .5), transparent 70%); }
+.gbc-2 { background: radial-gradient(circle, rgba(225, 29, 72, .45), transparent 70%); }
+.gbc-3 { background: radial-gradient(circle, rgba(255, 60, 60, .5), transparent 70%); }
+
+/* Teks galeri di atas latar gelap → warna terang */
+.g-title {
+  background: linear-gradient(120deg, #ff5a5a, #ff8a8a, #ff2e2e);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.g-sub { color: #e0b0c4; }
+.hint-text { color: #ffc2cf; }
+.caption { color: #ffc2cf; }
+.counter { color: #ff9eb0; }
+.g-footer p { color: #d8a0b8; }
+.dot { background: rgba(255, 255, 255, .28); }
+.dot.active {
+  background: linear-gradient(90deg, #ef4444, #b91c1c);
+  box-shadow: 0 2px 10px rgba(255, 26, 26, .6);
+}
+
+/* Glow di belakang foto */
+.glow {
+  background: radial-gradient(circle, rgba(255, 26, 26, .5), rgba(220, 38, 38, .28) 55%, transparent 72%);
+}
+
+/* Overlay kejutan terakhir */
+.final-overlay {
+  background: linear-gradient(160deg, rgba(30, 0, 0, .95), rgba(56, 0, 0, .95));
+}
+.final-text { color: #ffdbe2; }
+
+/* ---- HALAMAN 5: PENUTUP ---- */
+.final-bg {
+  background:
+    radial-gradient(ellipse at 15% 8%, rgba(255, 60, 60, .18), transparent 50%),
+    radial-gradient(ellipse at 88% 12%, rgba(225, 29, 72, .28), transparent 55%),
+    radial-gradient(ellipse at 50% 100%, rgba(255, 26, 26, .30), transparent 60%),
+    linear-gradient(160deg, #140000 0%, #2a0000 38%, #150000 100%);
+}
+
+.fbc-1 { background: radial-gradient(circle, rgba(255, 26, 26, .5), transparent 70%); }
+.fbc-2 { background: radial-gradient(circle, rgba(225, 29, 72, .45), transparent 70%); }
+.fbc-3 { background: radial-gradient(circle, rgba(255, 60, 60, .5), transparent 70%); }
+
+/* ---- Tombol-tombol jadi merah (selaras) ---- */
+.open-btn, .next-btn, .final-btn, .restart-btn, .music-hint {
+  background: linear-gradient(135deg, #ef4444, #b91c1c);
+}
+.open-btn:hover, .next-btn:hover, .final-btn:hover, .restart-btn:hover, .music-hint:hover {
+  background: linear-gradient(135deg, #ff5a5a, #dc2626);
+}
