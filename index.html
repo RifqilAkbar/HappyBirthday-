@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0220" />
+  <title>Her Special Day 🎂</title>
+
+  <!-- Favicon emoji (tanpa file gambar) -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎂</text></svg>" />
+
+  <!-- Font premium: Playfair (judul), Poppins (body), Dancing Script (script) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Poppins:wght@300;400;500;600&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       PEMUTAR YOUTUBE TERSEMBUNYI (lagu latar "Monokrom - Tulus")
+  ============================================================ -->
+  <div id="yt-player-wrap" aria-hidden="true">
+    <iframe
+      id="yt-player"
+      title="Musik latar"
+      src="about:blank"
+      allow="autoplay; encrypted-media; picture-in-picture"
+      allowfullscreen></iframe>
+  </div>
+
+  <!-- Kanvas partikel kecil (latar) + confetti (fullscreen) -->
+  <canvas id="particle-canvas" aria-hidden="true"></canvas>
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- Aura blur (gradient ungu / pink / hitam) -->
+  <div class="landing-bg" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 1: "HER SPECIAL DAY IS COMING" + COUNTDOWN
+  ============================================================ -->
+  <section id="landing" class="section active">
+    <div id="petals" class="petal-layer" aria-hidden="true"></div>
+
+    <div class="landing-content">
+      <p class="eyebrow fade-item" style="animation-delay:.3s">✦ Something Special Is Coming ✦</p>
+
+      <h1 class="landing-title fade-item" style="animation-delay:.6s">
+        Her Special Day<br />
+        <span class="gradient-text">is Coming</span>
+      </h1>
+
+      <!-- Countdown realtime, kotak glassmorphism -->
+      <div class="countdown fade-item" style="animation-delay:1s">
+        <div class="count-box">
+          <span class="num" id="cd-days">00</span>
+          <span class="label">Hari</span>
+        </div>
+        <div class="count-box">
+          <span class="num" id="cd-hours">00</span>
+          <span class="label">Jam</span>
+        </div>
+        <div class="count-box">
+          <span class="num" id="cd-minutes">00</span>
+          <span class="label">Menit</span>
+        </div>
+        <div class="count-box">
+          <span class="num" id="cd-seconds">00</span>
+          <span class="label">Detik</span>
+        </div>
+      </div>
+
+      <p class="hint fade-item" id="landing-hint" style="animation-delay:1.6s">✨ Bersiaplah, kejutan sedang mendekat... ✨</p>
+
+      <!-- Tombol muncul saat hitungan mencapai 00:00 (jam 12) -->
+      <button id="reveal-btn" class="open-btn">Happy Birthday 🎂</button>
+    </div>
+  </section>
+
+  <!-- Layar fade hitam saat transisi (1 detik) -->
+  <div id="blackout" class="blackout"></div>
+
+  <!-- ============================================================
+       SECTION 2: ANIMASI KUE + HAPPY BIRTHDAY
+  ============================================================ -->
+  <section id="birthday" class="section">
+    <!-- Balon, hati, dan sparkle (dibuat oleh JS) -->
+    <div id="balloons" class="fx-layer fx-balloons" aria-hidden="true"></div>
+    <div id="hearts" class="fx-layer fx-hearts" aria-hidden="true"></div>
+    <div id="sparkles" class="fx-layer fx-sparkles" aria-hidden="true"></div>
+
+    <div class="birthday-inner">
+      <!-- ===================== KUE ULANG TAHUN ===================== -->
+      <div class="cake-wrap">
+        <div class="cake-glow" aria-hidden="true"></div>
+
+        <div id="cake" class="cake">
+          <!-- Lilin (dibuat & dinyalakan oleh JS satu per satu) -->
+          <div id="candles" class="candles"></div>
+
+          <!-- Layer atas (pink + strawberry) -->
+          <div class="layer layer-top">
+            <div class="cream"></div>
+            <div id="strawberries-top" class="strawberries"></div>
+          </div>
+
+          <!-- Layer tengah (coklat + chocolate drip) -->
+          <div class="layer layer-middle">
+            <div class="cream"></div>
+            <div id="drips" class="drips"></div>
+            <div id="strawberries-mid" class="strawberries"></div>
+          </div>
+
+          <!-- Layer bawah (ungu) -->
+          <div class="layer layer-bottom">
+            <div class="cream"></div>
+          </div>
+
+          <!-- Piring kue + bayangan -->
+          <div class="plate"></div>
+          <div class="plate-shadow" aria-hidden="true"></div>
+        </div>
+      </div>
+
+      <!-- ===================== PESAN & TOMBOL ===================== -->
+      <div id="message" class="message">
+        <h2 id="type-text" class="type-line"></h2>
+        <p id="wish" class="wish">"Wishing you happiness, health, and all beautiful things."</p>
+        <button id="open-btn" class="open-btn">Open Your Surprise</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 3: BIRTHDAY LETTER (surat digital premium)
+  ============================================================ -->
+  <section id="letter" class="section letter-section">
+    <!-- Latar: blur circle + hati melayang + kelopak + sparkle -->
+    <div class="letter-bg" aria-hidden="true">
+      <div class="blur-circle bc-1"></div>
+      <div class="blur-circle bc-2"></div>
+      <div class="blur-circle bc-3"></div>
+    </div>
+    <div id="letter-hearts" class="letter-fx" aria-hidden="true"></div>
+    <div id="letter-petals" class="letter-fx" aria-hidden="true"></div>
+    <div id="letter-sparkles" class="letter-fx" aria-hidden="true"></div>
+
+    <!-- Isi surat (bisa di-scroll) -->
+    <div class="letter-scroll">
+      <div class="letter-card">
+
+        <!-- Header: icon hati animasi + judul -->
+        <div class="letter-heart reveal">❤️</div>
+        <h2 class="letter-title reveal">Selamat Ulang Tahun, Sayang!</h2>
+        <div class="letter-divider reveal"></div>
+
+        <!-- Isi surat (muncul satu per satu saat di-scroll) -->
+        <p class="letter-p reveal">
+          Hari ini bukanlah hari yang biasa. Hari ini adalah hari di mana seseorang
+          yang begitu istimewa hadir ke dunia — seseorang yang tanpa sadar telah
+          membawa begitu banyak kebahagiaan, warna, dan makna dalam setiap langkah hidupku.
+        </p>
+
+        <p class="letter-p reveal">
+          Terima kasih telah menjadi cahaya di saat hariku terasa gelap, menjadi alasan
+          untuk tersenyum di saat semuanya terasa berat, dan menjadi sosok yang selalu
+          membuat dunia terasa lebih indah hanya dengan kehadiranmu. Percayalah, aku
+          sangat bersyukur karena semesta telah mempertemukanku denganmu.
+        </p>
+
+        <p class="letter-p reveal">
+          Di hari yang spesial ini, aku hanya ingin mendoakan yang terbaik untukmu.
+          Semoga setiap impian yang selama ini kamu perjuangkan perlahan menjadi kenyataan,
+          dan setiap doa yang kamu panjatkan dijawab pada waktu yang paling indah.
+        </p>
+
+        <p class="letter-p reveal">
+          Aku berharap senyummu selalu hadir setiap hari, kesehatan selalu menyertaimu,
+          dan semua hal baik datang menghampirimu. Teruslah menjadi dirimu yang baik hati,
+          kuat, dan penuh kehangatan. Kamu pantas mendapatkan semua kebahagiaan di dunia ini.
+        </p>
+
+        <!-- Penutup -->
+        <p class="letter-sign reveal">Dengan seluruh cinta, untuk kamu ❤️</p>
+
+        <!-- Tombol menuju galeri kenangan (fade ±500ms) -->
+        <button id="next-btn" class="next-btn reveal">Next →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 4: MEMORY GALLERY (album perjalanan hidup)
+  ============================================================ -->
+  <section id="gallery" class="section">
+    <div class="gallery-bg" aria-hidden="true">
+      <div class="blur-circle gbc-1"></div>
+      <div class="blur-circle gbc-2"></div>
+      <div class="blur-circle gbc-3"></div>
+    </div>
+
+    <div id="gallery-hearts" class="fx hearts" aria-hidden="true"></div>
+    <div id="gallery-sparkles" class="fx sparkles" aria-hidden="true"></div>
+    <div id="gallery-petals" class="fx petals" aria-hidden="true"></div>
+
+    <div class="shell">
+      <header class="g-header">
+        <h1 class="g-title">✨ Twenty Years of Beautiful Memories ✨</h1>
+        <p class="g-sub">"From your childhood to today — every picture tells a beautiful story."</p>
+      </header>
+
+      <!-- Petunjuk swipe (hilang otomatis setelah swipe pertama) -->
+      <div class="swipe-hint" id="swipe-hint">
+        <span class="hint-hand" aria-hidden="true">👆</span>
+        <div class="hint-arrows" aria-hidden="true">👈────────────👉</div>
+        <p class="hint-text">Keep swiping until the very last photo ❤️</p>
+      </div>
+
+      <main class="g-main">
+        <!-- Slider foto -->
+        <div class="viewport" id="viewport">
+          <div class="slider">
+            <!-- Slide dibuat otomatis oleh script.js -->
+            <div class="track" id="track"></div>
+          </div>
+
+          <!-- Efek glow di belakang foto -->
+          <div class="glow" aria-hidden="true"></div>
+
+          <!-- Tombol navigasi -->
+          <button class="nav-btn nav-prev" id="nav-prev" aria-label="Sebelumnya">‹</button>
+          <button class="nav-btn nav-next" id="nav-next" aria-label="Berikutnya">›</button>
+        </div>
+
+        <!-- Indikator + nomor foto -->
+        <div class="g-meta">
+          <div class="dots" id="dots"></div>
+          <span class="counter" id="counter">1 / 8</span>
+        </div>
+
+        <!-- Caption foto (muncul dengan animasi fade) -->
+        <p class="caption" id="caption"></p>
+      </main>
+
+      <footer class="g-footer">
+        <span class="foot-heart">❤️</span>
+        <p>Terima kasih sudah menjadi bagian dari cerita ini.</p>
+      </footer>
+    </div>
+
+    <!-- ============================================================
+         KEJUTAN TERAKHIR (muncul di foto ke-8)
+    ============================================================ -->
+    <div class="final-overlay" id="final-overlay">
+      <div class="final-box">
+        <div class="final-emoji">❤️</div>
+        <div class="final-text">
+          <p>Dua puluh tahun telah membawamu menjadi seseorang yang begitu luar biasa.</p>
+          <p>Terima kasih sudah hadir di dunia.</p>
+          <p>Semoga setiap langkahmu selalu dipenuhi kebahagiaan.</p>
+        </div>
+        <button class="final-btn" id="final-btn">💌 One Last Message</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECTION 5: FINAL (pesan penutup yang emosional)
+  ============================================================ -->
+  <section id="final" class="section">
+    <div class="final-bg" aria-hidden="true">
+      <div class="blur-circle fbc-1"></div>
+      <div class="blur-circle fbc-2"></div>
+      <div class="blur-circle fbc-3"></div>
+    </div>
+
+    <div id="final-hearts" class="fx hearts" aria-hidden="true"></div>
+    <div id="final-sparkles" class="fx sparkles" aria-hidden="true"></div>
+    <div id="final-petals" class="fx petals" aria-hidden="true"></div>
+
+    <main class="final-shell">
+      <div class="final-card">
+        <div class="final-heart reveal" style="--d:.05s">❤️</div>
+
+        <h1 class="final-title reveal" style="--d:.25s">Happy 20th Birthday</h1>
+
+        <p class="final-msg reveal" style="--d:.45s">
+          Terima kasih sudah tumbuh menjadi seseorang yang begitu baik, kuat, dan penuh kehangatan.
+        </p>
+        <p class="final-msg reveal" style="--d:.65s">
+          Semoga di usia yang ke-20 ini, setiap langkahmu selalu dipenuhi kebahagiaan, kesehatan,
+          dan mimpi-mimpi yang menjadi nyata.
+        </p>
+        <p class="final-msg reveal" style="--d:.85s">
+          Jangan pernah berhenti tersenyum, karena senyummulah yang selalu membuat dunia terasa lebih indah.
+        </p>
+        <p class="final-msg reveal" style="--d:1.05s">
+          Aku hanya ingin kamu tahu satu hal...
+        </p>
+        <p class="final-msg reveal" style="--d:1.2s">
+          Aku akan selalu mendoakan yang terbaik untukmu.
+        </p>
+
+        <div class="final-love reveal" style="--d:1.4s">❤️ Selamat Ulang Tahun, Sayang ❤️</div>
+
+        <p class="final-quote reveal" style="--d:1.6s">
+          "Terima kasih sudah hadir di dunia. Kehadiranmu adalah hadiah terindah bagi banyak orang, termasuk aku."
+        </p>
+
+        <p class="final-sign reveal" style="--d:1.8s">— Dengan seluruh cinta, untuk kamu ❤️</p>
+
+        <!-- Tombol putar ulang -->
+        <button id="restart-btn" class="restart-btn reveal" style="--d:2s">⟲ Putar Lagi dari Awal</button>
+      </div>
+    </main>
+  </section>
+
+  <!-- Tombol musik (selalu terlihat, ketuk untuk menyalakan/mematikan lagu) -->
+  <button id="music-hint" class="music-hint" aria-label="Musik">🔊 Musik</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
